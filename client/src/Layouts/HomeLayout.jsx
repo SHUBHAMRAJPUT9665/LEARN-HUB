@@ -97,7 +97,6 @@ const HomeLayout = ({ children }) => {
         </div>
       </div>
       {children}
-
       <Footer></Footer>
     </div>
   );
