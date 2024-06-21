@@ -2,6 +2,8 @@ import React from 'react'
 import HomeLayout from '../Layouts/HomeLayout'
 import { Link } from 'react-router-dom'
 import HomePageImage from '../Assets/Images/homePageMainImage.png'
+import Lottie from 'lottie-react'
+import animationData from '../Assets/Animation - 1718891815653.json'
 const HomePage = () => {
   return (
     <HomeLayout>
@@ -30,7 +32,7 @@ const HomePage = () => {
         </div>
     </div>
     <div className='w-full lg:w-1/2 flex items-center justify-center'>
-        <img src={HomePageImage} alt="homepage image" className='max-w-full h-auto' />
+        <Lottie  animationData={animationData}/>
     </div>
 </div>
 

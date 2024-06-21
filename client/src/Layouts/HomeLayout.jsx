@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const HomeLayout = ({ children }) => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
