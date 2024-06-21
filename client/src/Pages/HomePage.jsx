@@ -3,7 +3,7 @@ import HomeLayout from '../Layouts/HomeLayout'
 import { Link } from 'react-router-dom'
 import HomePageImage from '../Assets/Images/homePageMainImage.png'
 import Lottie from 'lottie-react'
-import animationData from '../Assets/Animation - 1718891815653.json'
+import animationData from '../Assets/Animation - 1718988311424.json'
 const HomePage = () => {
   return (
     <HomeLayout>

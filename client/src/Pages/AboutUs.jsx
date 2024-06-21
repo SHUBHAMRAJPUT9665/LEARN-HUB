@@ -3,9 +3,10 @@ import HomeLayout from "../Layouts/HomeLayout";
 import aboutPageImage from "../Assets/Images/aboutMainImage.png";
 import CarouselSlide from "../componets/CarouselSlide";
 import { quote } from "../constants/quote";
+import animationData from '../Assets/about.json'
+import Lottie from "lottie-react";
 
 const AboutUs = () => {
-
   return (
     <HomeLayout>
       <div className="px-4 py-10 md:px-20 md:py-20 flex flex-col text-white">
@@ -22,14 +23,7 @@ const AboutUs = () => {
             </p>
           </section>
           <div className="w-full md:w-1/2">
-            <img
-              className="drop-shadow-2xl w-full"
-              style={{
-                filter: "drop-shadow(0px 10px 10px rgb(0,0,0))",
-              }}
-              src={aboutPageImage}
-              alt="about us image"
-            />
+           <Lottie animationData={animationData}/>
           </div>
         </div>
         <div className="carousel w-full md:w-2/3 lg:w-1/2 my-10 mx-auto">
