@@ -84,7 +84,11 @@ const login = async (req, res, next) => {
     if (!user || !(await user.comparePassword(password))) {
       return res
         .status(401)
-        .json(new ApiResponse(401, null, "Invalid Credentials"));
+        .json({
+          success:false,
+          message:"Invalid Credentials",
+          data:{}
+        });
     }
 
     const token = await user.generateJWTToken();
@@ -92,15 +96,11 @@ const login = async (req, res, next) => {
 
     res.cookie("token", token, cookieOptions);
 
-    return res
-      .status(200)
-      .json(
-        new ApiResponse(
-          200,
-          { user: loggedUser, token },
-          "User logged in successfully"
-        )
-      );
+    return res.status(200).json({
+        success:true,
+        message: "User logged in successfully",
+        data: loggedUser,token
+      })
   } catch (error) {
     return next(new ApiError(400, error.message));
   }
