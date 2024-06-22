@@ -22,7 +22,11 @@ const register = async (req, res, next) => {
 
   const userExists = await User.findOne({ email });
   if (userExists) {
-    return next(new ApiError(409, "User with this email already exists"));
+    return res.status(409).json({
+      success:false,
+      message:"User with this email already exists",
+      data:{}
+    })
   }
 
   const avatarFile = req.files?.avatar[0]?.path;
@@ -30,8 +34,12 @@ const register = async (req, res, next) => {
     throw new ApiError(400, "Avatar and cover image files are required");
   }
 
-
-  const avatarUploaded = await uploadFile(avatarFile,{width: 250, height: 250, gravity: "faces", crop: "fill"})
+  const avatarUploaded = await uploadFile(avatarFile, {
+    width: 250,
+    height: 250,
+    gravity: "faces",
+    crop: "fill",
+  });
 
   const user = await User.create({
     fullName,
@@ -56,9 +64,11 @@ const register = async (req, res, next) => {
   const token = await user.generateJWTToken();
   res.cookie("token", token, cookieOptions);
 
-  return res
-    .status(201)
-    .json(new ApiResponse(201, createdUser, "User registered successfully"));
+  return res.status(201).json({
+    success:true,
+    message:"user created succesfully",
+    data:createdUser
+  });
 };
 
 const login = async (req, res, next) => {
@@ -266,8 +276,7 @@ const updateUser = async (req, res) => {
       throw new ApiError(400, "Error uploading files to Cloudinary");
     }
     user.avatar.secure_url = avatarUploaded.url;
-    user.avatar.public_id = avatarUploaded.public_id || email
-
+    user.avatar.public_id = avatarUploaded.public_id || email;
   }
 
   await user.save();
@@ -276,11 +285,9 @@ const updateUser = async (req, res) => {
     new ApiResponse(200, {
       success: true,
       message: "user details updated successfully",
-      user
+      user,
     })
   );
-  
-
 };
 
 const getUser = async (req, res) => {
@@ -298,5 +305,5 @@ export {
   resetPassword,
   getUser,
   changePassword,
-  updateUser
+  updateUser,
 };

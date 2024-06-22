@@ -1,10 +1,9 @@
 import express from "express";
-import cors from "cors";
+import cors from 'cors'
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import userRoute from './routes/user.route.js'
 import courseRoute from './routes/course.route.js'
-import paymentRoute from './routes/payment.route.js'
 const app = express();
 
 app.use(express.json());
@@ -27,8 +26,6 @@ app.use('/api/v1/user', userRoute)
 // courses routes
 
 app.use('/api/v1/course' , courseRoute)
-
-app.use('/api/v1/payment ',paymentRoute)
 
 app.all("*", (req, res) => {
   res.status(404).send("oops ! 404 not found");
