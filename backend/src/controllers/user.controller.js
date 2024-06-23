@@ -113,27 +113,48 @@ const logout = async (req, res) => {
     httpOnly: true,
     sameSite: "Strict",
   });
+
   return res
     .status(200)
-    .json(new ApiResponse(200, "User logged out successfully"));
+    .json({
+      success:true,
+      message:"User logged out successfully",
+      data:{}
+});
 };
 
 const getProfile = async (req, res, next) => {
   try {
     const userId = req.user._id;
     if (!userId) {
-      return next(new ApiError(400, "User ID is missing"));
+      return res.status(400).json({
+        success:false,
+        message:"User ID is missing",
+        data:{}
+      })
     }
 
     const user = await User.findById(userId);
 
     if (!user) {
-      return next(new ApiError(404, "User not found"));
+      return res.status(400).json({
+        success:false,
+        message:"User not found",
+        data:{}
+      })
     }
 
-    return res.status(200).json(new ApiResponse(200, user));
+    return res.status(200).json({
+      success:true,
+      message:"user fetched",
+      data:user
+    })
   } catch (error) {
-    return next(new ApiError(400, error.message));
+    return res.status(400).json({
+      success:false,
+      message:error.message,
+      data:{}
+    }) 
   }
 };
 

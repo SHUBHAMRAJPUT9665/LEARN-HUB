@@ -25,7 +25,7 @@ app.use('/api/v1/user', userRoute)
 
 // courses routes
 
-app.use('/api/v1/course' , courseRoute)
+app.use('/api/v1/courses' , courseRoute)
 
 app.all("*", (req, res) => {
   res.status(404).send("oops ! 404 not found");

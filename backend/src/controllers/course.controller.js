@@ -5,17 +5,21 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import uploadFile from "../utils/upload.js";
 const getAllCourses = async (req, res) => {
   try {
-    const course = await Course.find({}).select("-lecture");
+    const courses = await Course.find({}).select("-lecture");
 
     res.status(200).json(
       new ApiResponse(200, {
         success: true,
-        message: "All Courses",
-        course,
+        message: "All Courses fetched",
+        courses,
       })
     );
   } catch (error) {
-    throw new ApiError(400, error.message);
+    return res.status(400).json({
+      success:false,
+      message:error.message,
+      data:{}
+    })
   }
 };
 

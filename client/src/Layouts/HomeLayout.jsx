@@ -4,6 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../componets/Footer";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/Slices/AuthSlice";
 
 const HomeLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const HomeLayout = ({ children }) => {
 
   async function handleLogout(e) {
     e.preventDefault();
-    // const res = await dispatch(logout())
+    const res = await dispatch(logout())
     navigate("/");
   }
 
