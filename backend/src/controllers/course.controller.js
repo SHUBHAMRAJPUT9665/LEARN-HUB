@@ -7,13 +7,10 @@ const getAllCourses = async (req, res) => {
   try {
     const courses = await Course.find({}).select("-lecture");
 
-    res.status(200).json(
-      new ApiResponse(200, {
-        success: true,
-        message: "All Courses fetched",
-        courses,
+    res.status(200).json({
+        courses
       })
-    );
+  
   } catch (error) {
     return res.status(400).json({
       success:false,

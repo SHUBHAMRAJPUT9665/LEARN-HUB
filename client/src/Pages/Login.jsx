@@ -34,7 +34,7 @@ const Login = () => {
     const response = await dispatch(login(loginData));
     
     if(response?.payload?.success){
-      navigate('/about')
+      navigate('/courses')
     }
     
     setLoginData({
