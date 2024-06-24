@@ -64,6 +64,16 @@ const register = async (req, res, next) => {
   const token = await user.generateJWTToken();
   res.cookie("token", token, cookieOptions);
 
+  const subject = `Account Created to LEARN HUB`;
+
+  const message = `Your account has been successfully created, and you can now enjoy all the features and benefits we offer.
+  Here are your login details for quick reference:
+  Username: ${fullName}
+  Email: ${email}`;
+
+  await sendEmail(email, subject, message);
+
+  
   return res.status(201).json({
     success:true,
     message:"user created succesfully",
@@ -80,6 +90,16 @@ const login = async (req, res, next) => {
     }
 
     const user = await User.findOne({ email }).select("+password");
+
+    if(!user){
+      return res
+      .status(401)
+      .json({
+        success:false,
+        message:"user does not exits",
+        data:{}
+      });
+    }
 
     if (!user || !(await user.comparePassword(password))) {
       return res
