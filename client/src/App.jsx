@@ -7,7 +7,7 @@ import { Route, Routes,} from 'react-router-dom'
 import Signup from './Pages/Signup'
 import Login from './Pages/Login'
 import CourseList from './Pages/course/CourseList'
-import CourseInfo from './Pages/CourseInfo'
+import CourseInfo from './componets/CourseInfo'
 import Denied from './Pages/Denied'
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/courses" element={<CourseList />}></Route>
-      <Route path="/course/:id" element={<CourseInfo />}></Route>
+      <Route path="/course/description" element={<CourseInfo />}></Route>
       <Route path="/denied" element={<Denied/>}></Route>
     </Routes>
    </>

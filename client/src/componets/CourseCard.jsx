@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 const CourseCard = ({ course }) => {
   const navigate = useNavigate();
 
@@ -12,8 +11,8 @@ const CourseCard = ({ course }) => {
 
   return (
     <div onClick={()=>{
-      console.log(course._id)
-      navigate(`/course/${course._id}`)
+      
+      navigate("/course/description",{state:{...course}})
     }} key={course.id} className="cursor-pointer max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-white text-black rounded-xl overflow-hidden shadow-lg mb-4 mx-auto flex flex-col h-full">
       <img
         className="w-full h-48 object-cover object-center"
