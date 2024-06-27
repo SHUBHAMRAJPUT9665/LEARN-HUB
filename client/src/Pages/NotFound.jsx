@@ -5,7 +5,7 @@ import Lottie from 'lottie-react'
 
 const NotFound = () => {
   return (
-    <div className='w-[90%]mx-auto'>
+    <div className='flex flex w-[90%]mx-auto '>
       <Lottie animationData={animationData}/>
     </div>
   )

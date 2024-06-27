@@ -15,7 +15,7 @@ const AboutUs = () => {
             <h1 className="text-3xl mt-6 sm:mt-0 md:text-5xl text-yellow-500 font-semibold">
               Affordable and quality education
             </h1>
-            <p className="text-sm md:text-xl text-gray-200">
+            <p className="text-sm  md:text-xl text-gray-200">
               Our goal is to provide affordable and quality education to the
               world. We are providing a platform for aspiring teachers and
               students to share their skills, creativity, and knowledge with
