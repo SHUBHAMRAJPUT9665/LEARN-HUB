@@ -1,8 +1,7 @@
-import {config} from 'dotenv'
-config()
-import {app} from './app.js'
-import connectDB from './db/index.js'
-
+import { config } from 'dotenv';
+config();
+import { app } from './app.js'; // Assuming `app` is exported correctly from `app.js`
+import connectDB from './db/index.js';
 
 connectDB()
   .then(() => {
@@ -10,10 +9,12 @@ connectDB()
       console.log(`Server is running at port: ${process.env.PORT || 8000}`);
     });
     app.on("error", (error) => {
-      console.log("Error", error);
+      console.error("Server error:", error);
       throw error;
     });
   })
   .catch((err) => {
-    console.log("MONGODB db connection failed!!", err);
+    console.error("MONGODB db connection failed!!", err);
   });
+
+export { app }; // Exporting `app` for Vercel serverless function
