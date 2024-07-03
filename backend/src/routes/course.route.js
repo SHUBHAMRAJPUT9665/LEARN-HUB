@@ -16,8 +16,8 @@ router
   .route("/")
   .get(getAllCourses)
   .post(
-    isLoggedIn,
-    authorizedRoles("ADMIN"),
+    // isLoggedIn,
+    // authorizedRoles("ADMIN"),
     upload.fields([
       {
         name: "thumbnail",

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import HomePageImage from "../Assets/Images/homePageMainImage.png";
 import Lottie from "lottie-react";
 import animationData from "../Assets/Animation - 1718988311424.json";
+import FAQSection from "./FAQ/FAQSection";
 const HomePage = () => {
   return (
     <HomeLayout>
@@ -37,6 +38,8 @@ const HomePage = () => {
           <Lottie animationData={animationData} />
         </div>
       </div>
+      <FAQSection />
+      
     </HomeLayout>
   );
 };

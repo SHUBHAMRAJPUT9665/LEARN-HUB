@@ -24,7 +24,7 @@ export const createNewCourse = createAsyncThunk('/course/create',async (data) =>
         let formData = new FormData();
 
         formData.append('title',data?.title)
-        formData.append('description',data?.discription)
+        formData.append('description',data?.description)
         formData.append('category',data?.category)
         formData.append('createdBy',data?.createdBy)
         formData.append('thumbnail',data?.thumbnail)
