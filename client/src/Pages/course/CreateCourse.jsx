@@ -74,7 +74,7 @@ const CreateCourse = () => {
 
   return (
     <HomeLayout>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex flex-col items-center justify-center min-h-screen ">
         <form
           onSubmit={onFormSubmit}
           className="flex flex-col items-center gap-6 rounded-lg p-6 bg-white text-gray-800 w-full max-w-xl shadow-lg relative"
