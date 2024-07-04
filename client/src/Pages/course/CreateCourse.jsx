@@ -69,40 +69,38 @@ const CreateCourse = () => {
       });
 
       navigate("/courses");
-
     }
-
   };
 
   return (
     <HomeLayout>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
         <form
           onSubmit={onFormSubmit}
-          className="flex flex-col items-center justify-center gap-5 rounded-lg p-8 bg-white text-gray-800 w-full max-w-3xl shadow-lg relative"
+          className="flex flex-col items-center gap-6 rounded-lg p-6 bg-white text-gray-800 w-full max-w-xl shadow-lg relative"
         >
-          <div className="flex items-center w-full mb-5">
+          <div className="flex items-center w-full mb-4">
             <Link
               to="/"
-              className="absolute top-4 left-4 text-2xl text-accent cursor-pointer"
+              className="absolute top-4 left-4 text-2xl text-blue-600 cursor-pointer"
             >
               <AiOutlineLeft />
             </Link>
-            <h1 className="w-full text-center text-3xl font-bold">
+            <h1 className="w-full text-center text-2xl font-bold text-gray-700">
               Create New Course
             </h1>
           </div>
-          <div className="flex flex-col items-center gap-6 w-full">
+          <div className="flex flex-col items-center gap-4 w-full">
             <label className="cursor-pointer w-full" htmlFor="image_uploads">
               {userInput.previewImage ? (
                 <img
                   src={userInput.previewImage}
                   alt="Course Thumbnail"
-                  className="w-full h-44 object-cover rounded-lg border"
+                  className="w-full h-36 object-cover rounded-lg border"
                 />
               ) : (
-                <div className="w-full h-44 flex items-center justify-center border rounded-lg bg-gray-200">
-                  <h1 className="font-bold text-lg text-gray-600">
+                <div className="w-full h-36 flex items-center justify-center border rounded-lg bg-gray-200">
+                  <h1 className="font-bold text-md text-gray-600">
                     Upload your course thumbnail
                   </h1>
                 </div>
@@ -117,7 +115,7 @@ const CreateCourse = () => {
               className="hidden"
             />
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-lg font-semibold" htmlFor="title">
+              <label className="text-md font-semibold text-gray-700" htmlFor="title">
                 Course Title
               </label>
               <input
@@ -125,13 +123,13 @@ const CreateCourse = () => {
                 required
                 name="title"
                 placeholder="Course Title"
-                className="bg-transparent px-4 py-2 border rounded-md"
+                className="bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 onChange={handleUserInput}
                 value={userInput.title}
               />
             </div>
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-lg font-semibold" htmlFor="createdBy">
+              <label className="text-md font-semibold text-gray-700" htmlFor="createdBy">
                 Instructor Name
               </label>
               <input
@@ -139,13 +137,13 @@ const CreateCourse = () => {
                 required
                 name="createdBy"
                 placeholder="Instructor Name"
-                className="bg-transparent px-4 py-2 border rounded-md"
+                className="bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 onChange={handleUserInput}
                 value={userInput.createdBy}
               />
             </div>
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-lg font-semibold" htmlFor="category">
+              <label className="text-md font-semibold text-gray-700" htmlFor="category">
                 Category
               </label>
               <input
@@ -153,27 +151,27 @@ const CreateCourse = () => {
                 required
                 name="category"
                 placeholder="Category"
-                className="bg-transparent px-4 py-2 border rounded-md"
+                className="bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 onChange={handleUserInput}
                 value={userInput.category}
               />
             </div>
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-lg font-semibold" htmlFor="description">
+              <label className="text-md font-semibold text-gray-700" htmlFor="description">
                 Description
               </label>
               <textarea
                 required
                 name="description"
                 placeholder="Course Description"
-                className="bg-transparent px-4 py-2 border rounded-md h-32"
+                className="bg-white px-4 py-2 border rounded-md h-24 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 onChange={handleUserInput}
                 value={userInput.description}
               />
             </div>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-600 transition duration-200"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-600 transition duration-200 w-full"
             >
               Create Course
             </button>
