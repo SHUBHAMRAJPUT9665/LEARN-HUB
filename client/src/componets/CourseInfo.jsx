@@ -50,11 +50,11 @@ const CourseInfo = () => {
               </div>
             </div>
             <div className="space-y-4 text-base sm:text-lg md:text-xl text-center md:text-left">
-              <h1 className="text-3xl sm:text-4xl font-bold text-yellow-500 mb-5">
+              <h1 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-5">
                 {state?.title}
               </h1>
               <p className="text-yellow-500 font-semibold">Course description</p>
-              <p>{state?.description}</p>
+              <p className="text-lg">{state?.description}</p>
             </div>
           </div>
         </div>

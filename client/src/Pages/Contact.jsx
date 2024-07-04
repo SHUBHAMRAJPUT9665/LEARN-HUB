@@ -1,8 +1,10 @@
 import React from 'react';
+import HomeLayout from "../Layouts/HomeLayout";
 
 const Contact = () => {
   return (
-    <div>
+  <HomeLayout>
+      <div>
       <section class="body-font relative bg-gray-900 text-gray-400">
 
 <div class="container mx-auto px-5 py-24">
@@ -76,6 +78,7 @@ const Contact = () => {
 
 </section>
     </div>
+  </HomeLayout>
   );
 }
 
