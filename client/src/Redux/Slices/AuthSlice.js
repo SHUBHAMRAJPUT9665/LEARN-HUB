@@ -55,6 +55,21 @@ export const logout =  createAsyncThunk('/auth/logout',async ()=>{
     }
 })
 
+export const userData = createAsyncThunk('/auth/userData',async() =>{
+    try {
+        const res = axiosInstance.post("user/profile");
+        toast.promise(res,{
+            loading:"loading profile",
+            success:'profile loaded',
+            error:'failed to load profile'
+        })
+
+        return (await res).data
+    } catch (error) {
+        toast.error(error?.response?.data?.message);
+        
+    }
+})
 const authSlice = createSlice({
     name: "auth",
   initialState,
