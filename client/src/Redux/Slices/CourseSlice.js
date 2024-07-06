@@ -35,7 +35,6 @@ export const createNewCourse = createAsyncThunk('/course/create',async (data) =>
             success:'Course created Successfully',
             error:'Failed to create course'
         })
-        console.log(response)
 
         return (await response).data
 
