@@ -13,6 +13,7 @@ import RequireAuth from "./componets/Auth/RequireAuth";
 import CreateCourse from "./Pages/course/CreateCourse";
 import Profile from "./Pages/User/Profile";
 import Contact from "./Pages/Contact";
+import Refund from "./Pages/Terms/Refund";
 function App() {
   return (
     <>
@@ -26,6 +27,9 @@ function App() {
         <Route path="/course/description" element={<CourseInfo />}></Route>
         <Route path="/denied" element={<Denied />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/refund" element={<Refund />}></Route>
+
+        
 
 
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
