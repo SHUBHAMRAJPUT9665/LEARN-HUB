@@ -14,6 +14,8 @@ import CreateCourse from "./Pages/course/CreateCourse";
 import Profile from "./Pages/User/Profile";
 import Contact from "./Pages/Contact";
 import Refund from "./Pages/Terms/Refund";
+import PrivacyPolicy from "./Pages/Terms/Privacy";
+import TermsAndConditions from "./Pages/Terms/TermsAndConditions";
 function App() {
   return (
     <>
@@ -28,8 +30,8 @@ function App() {
         <Route path="/denied" element={<Denied />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/refund" element={<Refund />}></Route>
-
-        
+        <Route path="/privacy" element={<PrivacyPolicy />}></Route>
+        <Route path="/terms-condition" element={<TermsAndConditions />}></Route>
 
 
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>

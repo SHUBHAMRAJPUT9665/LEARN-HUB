@@ -10,48 +10,32 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <div
-      onClick={() => {
-        navigate("/course/description", { state: { ...course } });
-      }}
-      key={course._id}
-      className="cursor-pointer max-w-sm bg-white text-black rounded-xl overflow-hidden shadow-lg mb-4 mx-auto flex flex-col h-full transition-transform transform hover:scale-105 duration-300"
-    >
-      <img
-        className="w-full h-48 object-cover object-center"
-        src={course.thumbnail?.secure_url || "https://via.placeholder.com/150"}
-        alt={course.title}
-      />
-      <div className="flex flex-col justify-between h-full px-6 py-4">
-        <div>
-          <div className="font-bold text-xl mb-2">{course.title}</div>
-          <p className="text-sm md:text-base text-gray-700">{course.description}</p>
-          <span className="text-gray-600 text-sm mt-2">
-            Instructor:{" "}
-            <span
-              className="text-blue-600 cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleInstructorClick();
-              }}
-            >
-              {course.createdBy}
+    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden mx-auto mb-4 cursor-pointer transition-transform transform hover:scale-105 duration-300">
+    <a href="#" onClick={() => { navigate("/course/description", { state: { ...course } }); }}>
+        <img className="w-full rounded-t-lg object-cover object-center" src={course.thumbnail?.secure_url || "https://via.placeholder.com/150"} alt={course.title} />
+    </a>
+    <div className="px-6 py-4">
+        <a href="#" onClick={() => { navigate("/course/description", { state: { ...course } }); }}>
+            <h5 className="text-xl font-bold mb-2 text-gray-900">{course.title}</h5>
+        </a>
+        <p className="text-sm text-gray-700 mb-2">{course.description}</p>
+        <div className="flex items-center space-x-1 mb-2">
+            <span className="text-gray-600 text-sm">Instructor: </span>
+            <span className="text-blue-600 cursor-pointer" onClick={(e) => { e.stopPropagation(); handleInstructorClick(); }}>
+                {course.createdBy}
             </span>
-          </span>
         </div>
-        <div className="mt-auto">
-          <span
-            className="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs md:text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleInstructorClick();
-            }}
-          >
-            {course.category}
-          </span>
+        <div className="flex items-center">
+            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs md:text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
+                {course.category}
+            </span>
+            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs md:text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
+                399 Rs
+            </span>
         </div>
-      </div>
     </div>
+</div>
+
   );
 };
 

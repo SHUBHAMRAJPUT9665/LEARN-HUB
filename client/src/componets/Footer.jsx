@@ -19,16 +19,15 @@ function App() {
           <a href="#" className="hover:underline">
             Our Info
           </a>
-          <a href="/refund" className="hover:underline">
-            Refund Policy
-          </a>
-          <Link to="/refund">
-            <a className="hover:underline">Privacy Policy</a>
+          <Link to="/privacy">
+            <a className="hover:underline">Privacy & Policy</a>
           </Link>
-
-          <a href="#" className="hover:underline">
-            Terms & Conditions
-          </a>
+          <Link to="/refund">
+            <a className="hover:underline">Refund Policy</a>
+          </Link>
+          <Link to="/terms-condition">
+            <a className="hover:underline">Terms And Conditions</a>
+          </Link>
         </section>
         <section className="flex items-center justify-center gap-5 text-2xl text-white">
           <a

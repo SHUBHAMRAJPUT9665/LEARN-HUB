@@ -1,8 +1,9 @@
 import React from "react";
-
+import HomeLayout from "../../Layouts/HomeLayout";
 function PrivacyPolicy() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <HomeLayout>
+      <div className="container mx-auto px-4 py-8 ">
       <h1 className="text-2xl font-bold mb-4">Privacy Policy</h1>
       <p className="mb-4">
         This Privacy Policy describes how we collect, use, and disclose information when you use our website. By accessing or using our website, you agree to the terms of this Privacy Policy.
@@ -29,12 +30,11 @@ function PrivacyPolicy() {
       </p>
       <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
       <p className="mb-4">
-        If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:projectsnightlight@gmail.com" className="text-blue-500 hover:underline">projectsnightlight@gmail.com</a>.
+        If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:shubhamrajput9665@gmail.com" className="text-blue-500 hover:underline">shubhamrajput9665@gmail.com</a>.
       </p>
-      <p className="text-center text-gray-500 mt-8">
-        POWERED BY NIGHT LIGHT PROJECTS
-      </p>
+     
     </div>
+    </HomeLayout>
   );
 }
 export default PrivacyPolicy;
