@@ -11,7 +11,7 @@ const CourseCard = ({ course }) => {
 
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden mx-auto mb-4 cursor-pointer transition-transform transform hover:scale-105 duration-300">
-    <a href="#" onClick={() => { navigate("/course/description", { state: { ...course } }); }}>
+    <a onClick={() => { navigate("/course/description", { state: { ...course } }); }}>
         <img className="w-full rounded-t-lg object-cover object-center" src={course.thumbnail?.secure_url || "https://via.placeholder.com/150"} alt={course.title} />
     </a>
     <div className="px-6 py-4">

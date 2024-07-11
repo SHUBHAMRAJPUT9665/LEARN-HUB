@@ -10,12 +10,12 @@ const TermsAndConditions = () => {
                 
                 <section className="mb-6">
                     <h2 className="text-2xl font-semibold text-white mb-2">Introduction</h2>
-                    <p className="text-white">Welcome to 30DaysConding! These terms and conditions outline the rules and regulations for the use of our website.</p>
+                    <p className="text-white">Welcome to LEARN HUB! These terms and conditions outline the rules and regulations for the use of our website.</p>
                 </section>
                 
                 <section className="mb-6">
                     <h2 className="text-2xl font-semibold text-white mb-2">Intellectual Property Rights</h2>
-                    <p className="text-white">Unless otherwise stated, 30DaysConding and its licensors own the intellectual property rights for all material on our website. All intellectual property rights are reserved.</p>
+                    <p className="text-white">Unless otherwise stated, LEARN HUB and its licensors own the intellectual property rights for all material on our website. All intellectual property rights are reserved.</p>
                 </section>
                 
                 <section className="mb-6">
@@ -50,7 +50,7 @@ const TermsAndConditions = () => {
                 
                 <section>
                     <h2 className="text-2xl font-semibold text-white mb-2">Contact Us</h2>
-                    <p className="text-white">If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:projectsnightlight@gmail.com" className="text-blue-500 underline">projectsnightlight@gmail.com</a>.</p>
+                    <p className="text-white">If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:shubhamrajput9665@gmail.com" className="text-blue-500 underline">shubhamrajput9665@gmail.com</a>.</p>
                 </section>
             </div>
         </div>
