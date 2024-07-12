@@ -51,6 +51,8 @@ const TermsAndConditions = () => {
                 <section>
                     <h2 className="text-2xl font-semibold text-white mb-2">Contact Us</h2>
                     <p className="text-white">If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:shubhamrajput9665@gmail.com" className="text-blue-500 underline">shubhamrajput9665@gmail.com</a>.</p>
+                    <p className="text-white">Contact No<a href="mailto:shubhamrajput9665@gmail.com" className="text-blue-500 underline">9665768968</a>.</p>
+
                 </section>
             </div>
         </div>

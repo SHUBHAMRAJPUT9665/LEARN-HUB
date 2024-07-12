@@ -16,9 +16,6 @@ function App() {
           Copyright {new Date().getFullYear()} | All rights reserved
         </section>
         <section className="flex flex-col sm:flex-row items-center justify-between gap-5 text-base sm:text-lg mb-4 sm:mb-0">
-          <a href="#" className="hover:underline">
-            Our Info
-          </a>
           <Link to="/privacy">
             <a className="hover:underline">Privacy & Policy</a>
           </Link>
