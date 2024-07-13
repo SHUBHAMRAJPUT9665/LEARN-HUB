@@ -291,7 +291,7 @@ const changePassword = async (req, res) => {
 const updateUser = async (req, res) => {
   const { fullName} = req.body;
 
-  const {id} = req.params;
+  const id = req.user._id;
 
   const user = await User.findById(id);
 
