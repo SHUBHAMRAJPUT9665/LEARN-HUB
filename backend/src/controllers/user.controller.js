@@ -291,15 +291,24 @@ const changePassword = async (req, res) => {
 const updateUser = async (req, res) => {
   const { fullName} = req.body;
 
+  console.log(fullName)
+
   const id = req.user._id;
 
   const user = await User.findById(id);
 
+  console.log(user)
+
   if (!user) {
-    throw new ApiError(400, "user does not exits");
+    return res.status(400).json({
+      success: false,
+      message: "user does not exits",
+      data:{},
+    })
   }
 
-  if (req.fullName) {
+
+  if (fullName) {
     user.fullName = fullName;
   }
 
@@ -308,13 +317,21 @@ const updateUser = async (req, res) => {
 
     const avatarFile = req.files?.avatar[0]?.path;
     if (!avatarFile) {
-      throw new ApiError(400, "Avatar and cover image files are required");
+      return res.status(400).json({
+        success: false,
+        message: "Avatar and cover image files are required",
+        data:{},
+      })
     }
     const avatarLocalPath = avatarFile;
 
     var avatarUploaded = await uploadOnCloudinary(avatarLocalPath);
     if (!avatarUploaded) {
-      throw new ApiError(400, "Error uploading files to Cloudinary");
+      return res.status(400).json({
+        success: false,
+        message: "Error uploading files to Cloudinary",
+        data:{},
+      })
     }
     user.avatar.secure_url = avatarUploaded.url;
     user.avatar.public_id = avatarUploaded.public_id || email;
@@ -325,7 +342,7 @@ const updateUser = async (req, res) => {
   res.status(200).json({
       success: true,
       message: "user details updated successfully",
-      user,
+      data:user,
     })
 };
 

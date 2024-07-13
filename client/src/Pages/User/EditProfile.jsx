@@ -11,72 +11,65 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  
   const userData = useSelector((state) => state?.auth?.data);
-  const user = typeof userData === 'string' ? JSON.parse(userData) : userData;
+  const user = typeof userData === "string" ? JSON.parse(userData) : userData;
 
-  console.log(user)
   const { _id } = user;
-
 
   const [data, setData] = useState({
     previewImage: "",
     fullName: "",
     avatar: undefined,
-    userId: user?._id,
+    userId: _id,
   });
 
   const handleAvatarClick = () => {
-    document.getElementById('image_upload').click();
+    document.getElementById("image_upload").click();
   };
 
-  function handleImageUpload(event) {
-    event.preventDefault();
-    // getting the image
+  const handleImageUpload = (event) => {
     const uploadedImage = event.target.files[0];
 
     if (uploadedImage) {
       const fileReader = new FileReader();
-      fileReader.readAsDataURL(uploadedImage);
-      fileReader.addEventListener("load", function () {
-        setData({
-          ...data,
-          previewImage: this.result,
+      fileReader.onloadend = () => {
+        setData((prevState) => ({
+          ...prevState,
           avatar: uploadedImage,
-        });
-      });
+          previewImage: fileReader.result,
+        }));
+      };
+      fileReader.readAsDataURL(uploadedImage);
     }
-  }
-  function handleInputChange(e) {
-    const { name, value } = e.target;
+  };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setData({
       ...data,
       [name]: value,
     });
-  }
+  };
 
-  async function onFormsSubmit(e) {
+  const onFormsSubmit = async (e) => {
     e.preventDefault();
     if (!data.fullName || !data.avatar) {
-      toast.error("All fiels are mandatory");
+      toast.error("All fields are mandatory");
       return;
     }
     if (data.fullName.length < 5) {
-      toast.error("name should be 8 character");
+      toast.error("Name should be at least 8 characters long");
+      return;
     }
 
     const formData = new FormData();
-
     formData.append("fullName", data.fullName);
     formData.append("avatar", data.avatar);
 
-    await dispatch(updateProfile(data.userId, data));
-
+    await dispatch(updateProfile({ userId: data.userId, formData }));
     await dispatch(getUserData());
-    navigate("/");
-  }
-
+    navigate("/user/profile");
+  };
   return (
     <HomeLayout>
       <div className="flex items-center justify-center h-[100vh]">
@@ -85,36 +78,53 @@ const EditProfile = () => {
           className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem] shadow-[0_0_10px_black]"
         >
           <h1 className="text-center text-2xl font-semibold">Edit Profile</h1>
-          <label onClick={handleAvatarClick} className="w-28 cursor-pointer h-28 rounded-full m-auto">
-            {data.previewImage ?(
-              <img 
-              className="w-28 h-28 rounded-full m-auto"
-              src={
-                data.previewImage
-              } alt="user profile" />
-            ):(
-              <BsPersonCircle className='w-28 h-28 rounded-full m-auto' />
+          <label
+            onClick={handleAvatarClick}
+            className="w-28 cursor-pointer h-28 rounded-full m-auto"
+          >
+            {data.previewImage ? (
+              <img
+                className="w-28 h-28 rounded-full m-auto"
+                src={data.previewImage}
+                alt="user profile"
+              />
+            ) : (
+              <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />
             )}
           </label>
           <input
-                    type="file"
-                    name="image_upload"
-                    id="image_upload"
-                    accept=".jpg,.jpeg,.png,.svg"
-                    className="hidden"
-                    onChange={handleImageUpload}
+            type="file"
+            name="image_upload"
+            id="image_upload"
+            accept=".jpg,.jpeg,.png,.svg"
+            className="hidden"
+            onChange={handleImageUpload}
           />
           <div className="flex flex-col gap-1">
-            <label htmlFor="fullName" className="text-lg font-semibold">Full Name</label>
-            <input required name="fullName" id="fullName" placeholder="Enter your name" className="bg-transparent rounded-lg px-2 py-1 border" value={data.fullName} onChange={handleInputChange} type="text" />
+            <label htmlFor="fullName" className="text-lg font-semibold">
+              Full Name
+            </label>
+            <input
+              required
+              name="fullName"
+              id="fullName"
+              placeholder="Enter your name"
+              className="bg-transparent rounded-lg px-2 py-1 border"
+              value={data.fullName}
+              onChange={handleInputChange}
+              type="text"
+            />
           </div>
-          <button type="submit" className="w-full bg-yellow-600 p-2 rounded-lg hover:"> 
+          <button
+            type="submit"
+            className="w-full bg-yellow-600 p-2 rounded-lg hover:"
+          >
             update profile
           </button>
-          <Link to={'/user/profile'}>
-              <p className="link text-accent cursor-pointer flex items-center justify-center w-full gap-2">
-              <AiOutlineArrowLeft />  Go back to profile
-              </p>
+          <Link to={"/user/profile"}>
+            <p className="link text-accent cursor-pointer flex items-center justify-center w-full gap-2">
+              <AiOutlineArrowLeft /> Go back to profile
+            </p>
           </Link>
         </form>
       </div>

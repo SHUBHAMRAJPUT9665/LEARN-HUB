@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getUserData } from '../../Redux/Slices/AuthSlice';
 const Profile = () => {
   const dispatch = useDispatch();
 
@@ -12,7 +13,7 @@ const Profile = () => {
 
 
   useEffect(() => {
-    // dispatch(getUserData())
+    dispatch(getUserData())
   }, []);
 
   return (
