@@ -16,6 +16,7 @@ import Contact from "./Pages/Contact";
 import Refund from "./Pages/Terms/Refund";
 import PrivacyPolicy from "./Pages/Terms/Privacy";
 import TermsAndConditions from "./Pages/Terms/TermsAndConditions";
+import EditProfile from "./Pages/User/EditProfile";
 function App() {
   return (
     <>
@@ -32,6 +33,8 @@ function App() {
         <Route path="/refund" element={<Refund />}></Route>
         <Route path="/privacy" element={<PrivacyPolicy />}></Route>
         <Route path="/terms-condition" element={<TermsAndConditions />}></Route>
+        <Route path="/edit-profile" element={<EditProfile />}></Route>
+
 
 
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>

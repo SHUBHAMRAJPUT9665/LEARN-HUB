@@ -289,9 +289,9 @@ const changePassword = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { fullName } = req.body;
+  const { fullName} = req.body;
 
-  const id = req.user._id;
+  const {id} = req.params;
 
   const user = await User.findById(id);
 
@@ -322,13 +322,11 @@ const updateUser = async (req, res) => {
 
   await user.save();
 
-  res.status(200).json(
-    new ApiResponse(200, {
+  res.status(200).json({
       success: true,
       message: "user details updated successfully",
       user,
     })
-  );
 };
 
 const getUser = async (req, res) => {
