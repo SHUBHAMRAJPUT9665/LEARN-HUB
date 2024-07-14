@@ -30,7 +30,7 @@ router.route("/forgot").post(forgotPassword);
 router.route("/reset-password/:resetToken").post(resetPassword);
 router.route("/change-password").post(isLoggedIn, changePassword);
 router.route("/all").get(getUser);
-router.route("/update").post(
+router.route("/update").put(
   upload.fields([
     {
       name: "avatar",
