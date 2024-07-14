@@ -6,20 +6,31 @@ const isLoggedIn = async (req, res, next) => {
     const { token } = req.cookies;
 
     if (!token) {
-      return next(new ApiError(400, "Unauthenticated user, please login again"));
+      return res.status(400).json({
+        success:false,
+        message: "Unauthenticated user, please login again",
+        data:{}
+      })
     }
 
     const userDetails = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
 
     if (!userDetails) {
-      return next(new ApiError(401, "Invalid token, please login again"));
+      return res.status(400).json({
+        success:false,
+        message: "Invalid token, please login again",
+        data:{}
+      })
     }
-
     req.user = userDetails;
     next();
   } catch (error) {
-    return next(new ApiError(400, "Token verification failed, please login again"));
+    return res.status(400).json({
+      success:false,
+      message: "Token verification failed, please login again",
+      data:{}
+    })
   }
 };
 
@@ -29,7 +40,11 @@ const authorizedRoles = (...roles) => async (req,res , next) =>{
   const currentUserRoles =  req.user.role;
 
   if(!roles.includes(currentUserRoles)){
-    return next(new ApiError(403, "You do not have permission to access this route"));
+    return res.status(403).json({
+      success:false,
+      message:"You do not have permission to access this route",
+      data:{}
+    })
   }
 
   next();

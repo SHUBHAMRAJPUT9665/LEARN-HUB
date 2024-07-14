@@ -291,13 +291,11 @@ const changePassword = async (req, res) => {
 const updateUser = async (req, res) => {
   const { fullName} = req.body;
 
-  console.log(fullName)
 
   const id = req.user._id;
 
   const user = await User.findById(id);
 
-  console.log(user)
 
   if (!user) {
     return res.status(400).json({
@@ -316,6 +314,7 @@ const updateUser = async (req, res) => {
     await cloudinary.v2.uploader.destroy(user.avatar.public_id);
 
     const avatarFile = req.files?.avatar[0]?.path;
+
     if (!avatarFile) {
       return res.status(400).json({
         success: false,

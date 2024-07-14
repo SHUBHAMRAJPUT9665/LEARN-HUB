@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+
 const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,36 +20,37 @@ const EditProfile = () => {
   const [data, setData] = useState({
     previewImage: "",
     fullName: "",
-    avatar: undefined,
+    avatar: "",
     userId: _id,
   });
 
   const handleAvatarClick = () => {
-    document.getElementById("image_upload").click();
+    document.getElementById('image_uploads').click();
   };
 
-  const handleImageUpload = (event) => {
+  const getImage = (event) => {
+    event.preventDefault();
     const uploadedImage = event.target.files[0];
 
     if (uploadedImage) {
       const fileReader = new FileReader();
-      fileReader.onloadend = () => {
+      fileReader.readAsDataURL(uploadedImage);
+      fileReader.addEventListener("load", () => {
         setData((prevState) => ({
           ...prevState,
           avatar: uploadedImage,
-          previewImage: fileReader.result,
+          previewImage: fileReader.result
         }));
-      };
-      fileReader.readAsDataURL(uploadedImage);
+      });
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleUserInput = (e) => {
     const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
+    setData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const onFormsSubmit = async (e) => {
@@ -58,27 +60,39 @@ const EditProfile = () => {
       return;
     }
     if (data.fullName.length < 5) {
-      toast.error("Name should be at least 8 characters long");
+      toast.error("Name should be at least 5 characters long");
       return;
     }
-
     const formData = new FormData();
-    formData.append("fullName", data.fullName);
-    formData.append("avatar", data.avatar);
+    formData.append('fullName', data.fullName);
+    formData.append('avatar',data.avatar);
 
-    await dispatch(updateProfile(formData));
+
+
+    const response = await dispatch(updateProfile(formData));
+    if (response?.payload?.success) {
+      setData({
+        previewImage: null,
+        fullName: "",
+        avatar: "",
+        userId: _id,
+      });
+    }
+
     await dispatch(getUserData());
     navigate("/user/profile");
   };
+
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[100vh]">
+      <div className="flex items-center justify-center h-[100vh] bg-gray-100">
         <form
           onSubmit={onFormsSubmit}
-          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem] shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-gray-800 bg-white w-80 min-h-[26rem] shadow-md"
         >
           <h1 className="text-center text-2xl font-semibold">Edit Profile</h1>
           <label
+            onChange={getImage}
             onClick={handleAvatarClick}
             className="w-28 cursor-pointer h-28 rounded-full m-auto"
           >
@@ -89,16 +103,16 @@ const EditProfile = () => {
                 alt="user profile"
               />
             ) : (
-              <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />
+              <BsPersonCircle className="w-28 h-28 rounded-full m-auto text-gray-400" />
             )}
           </label>
           <input
             type="file"
-            name="image_upload"
-            id="image_upload"
+            name="image_uploads"
+            id="image_uploads"
             accept=".jpg,.jpeg,.png,.svg"
             className="hidden"
-            onChange={handleImageUpload}
+            onChange={getImage}
           />
           <div className="flex flex-col gap-1">
             <label htmlFor="fullName" className="text-lg font-semibold">
@@ -109,20 +123,20 @@ const EditProfile = () => {
               name="fullName"
               id="fullName"
               placeholder="Enter your name"
-              className="bg-transparent rounded-lg px-2 py-1 border"
+              className="bg-gray-100 rounded-lg px-2 py-1 border"
               value={data.fullName}
-              onChange={handleInputChange}
+              onChange={handleUserInput}
               type="text"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-yellow-600 p-2 rounded-lg hover:"
+            className="w-full bg-yellow-600 p-2 rounded-lg hover:bg-yellow-700 text-white"
           >
-            update profile
+            Update Profile
           </button>
           <Link to={"/user/profile"}>
-            <p className="link text-accent cursor-pointer flex items-center justify-center w-full gap-2">
+            <p className="link text-blue-600 cursor-pointer flex items-center justify-center w-full gap-2">
               <AiOutlineArrowLeft /> Go back to profile
             </p>
           </Link>

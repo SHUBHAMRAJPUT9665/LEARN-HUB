@@ -12,12 +12,9 @@ import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
-router
-  .route("/")
-  .get(getAllCourses)
-  .post(
-    // isLoggedIn,
-    // authorizedRoles("ADMIN"),
+router.route("/").get(getAllCourses).post(
+    isLoggedIn,
+    authorizedRoles("ADMIN"),
     upload.fields([
       {
         name: "thumbnail",

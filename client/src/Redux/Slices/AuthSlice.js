@@ -55,18 +55,16 @@ export const logout =  createAsyncThunk('/auth/logout',async ()=>{
     }
 })
 
-export const updateProfile =  createAsyncThunk('user/update/profile',async (id,data)=>{
+export const updateProfile =  createAsyncThunk('user/update/profile',async (data)=>{
     try {
-        console.log("update profile:",data)
-        const res = axiosInstance.put(`user/update`,data);
-        toast.promise(res, {
+      
+        const res = axiosInstance.post(`user/update`,data);
+        toast.promise(response, {
             loading: "Wait! profile update in progress",
-            success: (data) => {
-                return data?.data?.message;
-            },
+            success: 'profile updated Successfully',
             error: "Failed to update profile"
         });
-        return (await res).data;
+        return (await response).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
     }
