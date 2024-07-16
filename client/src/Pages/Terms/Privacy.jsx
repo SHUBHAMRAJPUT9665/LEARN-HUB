@@ -3,7 +3,7 @@ import HomeLayout from "../../Layouts/HomeLayout";
 function PrivacyPolicy() {
   return (
     <HomeLayout>
-      <div className="container mx-auto px-4 py-8 ">
+      <div className="container mx-auto  sm:h-[100vh] text-white px-4 py-8 ">
       <h1 className="text-2xl font-bold mb-4">Privacy Policy</h1>
       <p className="mb-4">
         This Privacy Policy describes how we collect, use, and disclose information when you use our website. By accessing or using our website, you agree to the terms of this Privacy Policy.

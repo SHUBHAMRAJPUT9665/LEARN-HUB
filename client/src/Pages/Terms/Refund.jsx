@@ -3,7 +3,7 @@ import HomeLayout from '../../Layouts/HomeLayout'
 const Refund = () => {
   return (
   <HomeLayout>
-    <div className="container flex flex-col justify-center items-center mx-auto px-4 py-8">
+    <div className="container flex sm:h-[100vh] text-white flex-col justify-center items-center mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Refund Policy</h1>
       <p className="mb-4">
         Thank you for shopping at 30dayscoding.com.
