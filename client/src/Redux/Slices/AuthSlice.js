@@ -76,7 +76,6 @@ export const updateProfile = createAsyncThunk('user/update/profile', async (data
 
 export const changePassword = createAsyncThunk('user/change/password', async (data) => {
   try {
-    console.log(data)
     const res = axiosInstance.post('user/forgot', data);
     toast.promise(res, {
       loading: "Wait! password change in progress",

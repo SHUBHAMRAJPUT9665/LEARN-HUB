@@ -180,8 +180,7 @@ const getProfile = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
   const { email } = req.body;
-
-  console.log(email)
+  
 
   if (!email) {
     return res.status(400).json({
