@@ -181,14 +181,24 @@ const getProfile = async (req, res, next) => {
 const forgotPassword = async (req, res, next) => {
   const { email } = req.body;
 
+  console.log(email)
+
   if (!email) {
-    return next(new ApiError(400, "email is required"));
+    return res.status(400).json({
+      success:false,
+      message:"email is required",
+      data:{}
+    })
   }
 
   const user = await User.findOne({ email });
 
   if (!user) {
-    return next(new ApiError(400, "user not found"));
+    return res.status(400).json({
+      success:false,
+      message: "user not found",
+      data:{}
+    })
   }
 
   const resetToken = await user.generatePasswordResetToken();

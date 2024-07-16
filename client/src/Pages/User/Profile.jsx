@@ -30,7 +30,7 @@ const Profile = () => {
         <hr className="mt-8" />
         <div className="flex p-4">
           <div className="w-1/2 text-center m-2">
-            <button className="bg-blue-500 text-sm text-white px-4 py-2 rounded hover:bg-blue-700">
+            <button onClick={() => navigate('/change-Password')} className="bg-blue-500 text-sm text-white px-4 py-2 rounded hover:bg-blue-700">
               Change Password
             </button>
           </div>
