@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../Redux/Slices/CourseSlice";
 import HomeLayout from "../../Layouts/HomeLayout";
 import CourseCard from "../../componets/CourseCard";
-
+import { useState } from "react";
 const CourseList = () => {
   const dispatch = useDispatch();
   const { courseData } = useSelector((state) => state.course);
@@ -25,10 +25,8 @@ const CourseList = () => {
             Industry experts
           </span>
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {courseData.map((course) => (
-            <CourseCard key={course._id} course={course} />
-          ))}
+        <div className="">
+            <CourseCard  courseData={courseData}/>
         </div>
       </div>
     </HomeLayout>

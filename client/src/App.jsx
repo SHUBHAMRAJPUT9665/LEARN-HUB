@@ -18,6 +18,7 @@ import PrivacyPolicy from "./Pages/Terms/Privacy";
 import TermsAndConditions from "./Pages/Terms/TermsAndConditions";
 import EditProfile from "./Pages/User/EditProfile";
 import ChangePassword from "./Pages/User/ChangePassword";
+import NewPassword from "./Pages/User/NewPassword";
 function App() {
   return (
     <>
@@ -35,15 +36,13 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicy />}></Route>
         <Route path="/terms-condition" element={<TermsAndConditions />}></Route>
         <Route path="/edit-profile" element={<EditProfile />}></Route>
-
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="/course/create" element={<CreateCourse />} />
         </Route>
-
         <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
           <Route path="/user/profile" element={<Profile />}></Route>
           <Route path="/change-Password" element={<ChangePassword />}></Route>
-
+          <Route path="/user/reset-password/:resetPasswordURL" element={<NewPassword />}></Route>
         </Route>
         <Route path="/user/profile" element={<Profile />}></Route>
       </Routes>

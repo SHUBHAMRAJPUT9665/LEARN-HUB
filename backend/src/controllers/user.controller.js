@@ -203,7 +203,7 @@ const forgotPassword = async (req, res, next) => {
   const resetToken = await user.generatePasswordResetToken();
   await user.save();
 
-  const resetPasswordURL = `${process.env.FRONTEND_URL}/api/v1/user/reset-password/${resetToken}`;
+  const resetPasswordURL = `${process.env.FRONTEND_URL}/user/reset-password/${resetToken}`;
 
   const subject = `password reset`;
 

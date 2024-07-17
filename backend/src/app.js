@@ -9,15 +9,15 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'https://learn-hub-v1.vercel.app',  // Specific origin
+  origin: process.env.FRONTEND_URL,  // Specific origin
   credentials: true  // Allow credentials (cookies, authorization headers, etc.)
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 
-// Ensure the headers are set for all responses
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://learn-hub-v1.vercel.app');  // Specific origin
+  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL);  // Specific origin
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -26,7 +26,6 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 app.use(express.static("public"));
-app.use(cookieParser());
 app.use(morgan("dev"));
 
 //user  routes
