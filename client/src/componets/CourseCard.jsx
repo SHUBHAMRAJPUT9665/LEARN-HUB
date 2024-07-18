@@ -81,10 +81,7 @@ const CourseCard = ({ courseData }) => {
                   {course.createdBy}
                 </span>
               </div>
-              <div className="flex items-center space-x-1 mb-2">
-                <span className="text-gray-600 text-sm">Price: </span>
-                <span className="text-black cursor-pointer">499</span>
-              </div>
+
               <div className="flex items-center">
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs md:text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
                   {course.category}
