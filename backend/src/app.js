@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,  // Specific origin
+  origin: [process.env.FRONTEND_URL],  // Specific origin
   credentials: true  // Allow credentials (cookies, authorization headers, etc.)
 };
 
