@@ -31,7 +31,6 @@ app.use(morgan("dev"));
 //user  routes
 app.use("/api/v1/user", userRoute);
 
-// courses routes
 
 app.use("/api/v1/courses", courseRoute);
 
