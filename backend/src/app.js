@@ -10,13 +10,8 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-<<<<<<< HEAD
   origin: process.env.FRONTEND_URL, // Adjust this based on your environment
   credentials: true,  // Allow credentials (cookies, authorization headers, etc.)
-=======
-  origin: [process.env.FRONTEND_URL],  // Specific origin
-  credentials: true  // Allow credentials (cookies, authorization headers, etc.)
->>>>>>> 2d96a313dad9bf421196395fc953faca3ac17766
 };
 
 app.use(cors(corsOptions));
