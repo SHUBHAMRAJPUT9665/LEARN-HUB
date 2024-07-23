@@ -7,10 +7,9 @@ import crypto from "crypto";
 import cloudinary from "cloudinary";
 import uploadFile from "../utils/upload.js";
 const cookieOptions = {
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+  secure: process.env.NODE_ENV === 'production' ? true : false,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-  sameSite: "Strict", // Ensuring cookie is not sent along with cross-site requests
 };
 
 const register = async (req, res, next) => {
