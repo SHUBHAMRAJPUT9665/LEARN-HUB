@@ -16,6 +16,9 @@ const cookieOptions = {
 const register = async (req, res, next) => {
   const { fullName, password, email } = req.body;
 
+
+  console.log(fullName,password,email)
+
   if (!fullName || !email || !password) {
     return next(new ApiError(400, "All fields are required"));
   }
@@ -122,6 +125,7 @@ const login = async (req, res, next) => {
         data: loggedUser,token
       })
   } catch (error) {
+    console.log(error)
     return next(new ApiError(400, error.message));
   }
 };

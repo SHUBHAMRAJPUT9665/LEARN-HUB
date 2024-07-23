@@ -7,7 +7,7 @@ import {
   removeCourse,
   addLectureCourseById,
 } from "../controllers/course.controller.js";
-import { isLoggedIn, authorizedRoles } from "../middleware/auth.middleware.js";
+import { isLoggedIn, authorizedRoles, authorizeSubscriber } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
@@ -30,6 +30,7 @@ router
   .get(
        isLoggedIn, 
        authorizedRoles("ADMIN"), 
+       authorizeSubscriber,
        getLectureCourseId
   )
   .put(

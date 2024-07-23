@@ -37,9 +37,12 @@ const userSchema = new Schema(
         type: String,
       },
     },
+    subscription: {
+      id: String,
+      status: String,
+    },
     forgotPasswordToken: String,
     forgotPasswordExpiry: Date,
-
     role: {
       type: String,
       enum: ["USER", "ADMIN"],
@@ -47,11 +50,6 @@ const userSchema = new Schema(
     },
     forgotPasswordToken: String,
     forgotPasswordExpiry: Date,
-
-    subscription:{
-      types:String,
-      status: String
-    }
   },
   { timestamps: true }
 );

@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import { ApiError } from '../utils/ApiError.js';
+import jwt from "jsonwebtoken";
+import { ApiError } from "../utils/ApiError.js";
 
 const isLoggedIn = async (req, res, next) => {
   try {
@@ -7,46 +7,59 @@ const isLoggedIn = async (req, res, next) => {
 
     if (!token) {
       return res.status(400).json({
-        success:false,
+        success: false,
         message: "Unauthenticated user, please login again",
-        data:{}
-      })
+        data: {},
+      });
     }
 
     const userDetails = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-
     if (!userDetails) {
       return res.status(400).json({
-        success:false,
+        success: false,
         message: "Invalid token, please login again",
-        data:{}
-      })
+        data: {},
+      });
     }
     req.user = userDetails;
     next();
   } catch (error) {
     return res.status(400).json({
-      success:false,
+      success: false,
       message: "Token verification failed, please login again",
-      data:{}
-    })
+      data: {},
+    });
   }
 };
 
+const authorizedRoles =
+  (...roles) =>
+  async (req, res, next) => {
+    console.log(req.user);
+    const currentUserRoles = req.user.role;
 
-const authorizedRoles = (...roles) => async (req,res , next) =>{
-  console.log(req.user)
-  const currentUserRoles =  req.user.role;
+    if (!roles.includes(currentUserRoles)) {
+      return res.status(403).json({
+        success: false,
+        message: "You do not have permission to access this route",
+        data: {},
+      });
+    }
 
-  if(!roles.includes(currentUserRoles)){
+    next();
+  };
+
+const authorizeSubscriber = () => {
+  const subscription = req.user.subscription;
+  const currentUserRole = req.user.role;
+  if (currentUserRole !== "ADMIN" && subscription.status !== "active") {
     return res.status(403).json({
-      success:false,
-      message:"You do not have permission to access this route",
-      data:{}
-    })
+      success: false,
+      message: "please subscribe to course",
+      data: {},
+    });
   }
-
   next();
-}
-export { isLoggedIn , authorizedRoles };
+};
+export { isLoggedIn, authorizedRoles, authorizeSubscriber };
