@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getUserData } from '../../Redux/Slices/AuthSlice';
-
+import { userData } from '../../Redux/Slices/AuthSlice';
 const Profile = () => {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.auth.data);
-  const user = typeof userData === 'string' ? JSON.parse(userData) : userData;
+  const userDa = useSelector((state) => state.auth.data);
+  const user = typeof userDa === 'string' ? JSON.parse(userDa) : userDa;
   const navigate = useNavigate();
 
+  console.log(user)
+
   useEffect(() => {
-    dispatch(getUserData());
+    dispatch(userData());
   }, [dispatch]);
 
   return (
@@ -41,7 +42,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="text-center mt-4 font-light text-[20px]">
-          Subscription: unActive
+          Subscription: {user?.subscription?.status}
         </div>
       </div>
     </div>

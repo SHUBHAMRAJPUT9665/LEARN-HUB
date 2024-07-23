@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { getUserData, updateProfile } from "../../Redux/Slices/AuthSlice";
+import { userData, updateProfile } from "../../Redux/Slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -12,8 +12,8 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userData = useSelector((state) => state?.auth?.data);
-  const user = typeof userData === "string" ? JSON.parse(userData) : userData;
+  const userDa = useSelector((state) => state?.auth?.data);
+  const user = typeof userDa === "string" ? JSON.parse(userData) : userDa;
 
   const { _id } = user;
 
@@ -79,7 +79,7 @@ const EditProfile = () => {
       });
     }
 
-    await dispatch(getUserData());
+    await dispatch(userData());
     navigate("/user/profile");
   };
 

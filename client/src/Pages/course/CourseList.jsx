@@ -3,16 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../Redux/Slices/CourseSlice";
 import HomeLayout from "../../Layouts/HomeLayout";
 import CourseCard from "../../componets/CourseCard";
-import { useState } from "react";
+import { userData } from "../../Redux/Slices/AuthSlice";
 const CourseList = () => {
   const dispatch = useDispatch();
   const { courseData } = useSelector((state) => state.course);
 
   async function loadCourse() {
+    await dispatch(userData())
     await dispatch(getAllCourses());
   }
-
-  useEffect(() => {
+  
+  useEffect(() => {  
     loadCourse();
   }, []);
 

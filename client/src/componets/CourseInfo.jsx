@@ -3,14 +3,13 @@ import HomeLayout from "../Layouts/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 const CourseInfo = () => {
   const { state } = useLocation();
-  const { role, data } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  const { role, data } = useSelector((state) => state?.auth);
+  console.log(data)
+  const navigate = useNavigate();
+  
 
   return (
     <HomeLayout>
@@ -38,12 +37,12 @@ const CourseInfo = () => {
                     {state?.createdBy}
                   </p>
                 </div>
-                {role === 'ADMIN' || data?.subscription?.status === 'ACTIVE' ? (
+                {role === 'ADMIN' || data?.subscription?.status === 'active' ? (
                   <button className="bg-yellow-500 px-3 sm:px-5 py-2 sm:py-3 rounded-md font-semibold text-sm sm:text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                     Watch lectures
                   </button>
                 ) : (
-                  <button className="bg-yellow-500 px-3 sm:px-5 py-2 sm:py-3 rounded-md font-semibold text-sm sm:text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+                  <button onClick={() => navigate('/checkout')} className="bg-yellow-500 px-3 sm:px-5 py-2 sm:py-3 rounded-md font-semibold text-sm sm:text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                     Subscribe
                   </button>
                 )}

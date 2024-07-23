@@ -131,7 +131,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.role = '';
       })
-      .addCase(getUserData.fulfilled, (state, action) => {
+      .addCase(userData.fulfilled, (state, action) => {
         const userData = action.payload.data;
         if (!userData) return;
         localStorage.setItem("data", JSON.stringify(userData));
