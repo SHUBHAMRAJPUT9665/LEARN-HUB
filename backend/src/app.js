@@ -8,13 +8,11 @@ import paymentRoute from './routes/payment.route.js'
 const app = express();
 
 const allowedOrigins = [process.env.FRONTEND_URL];
-<<<<<<< HEAD
 app.use(cors({
   origin:allowedOrigins,
   credentials: true,
 }));
 
-=======
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://learn-hub-v1.vercel.app');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -22,7 +20,6 @@ app.use((req, res, next) => {
   next();
 });
 app.set("trust proxy", 1);
->>>>>>> 4234846e3434671af0c13382e29076bb8682daa5
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
