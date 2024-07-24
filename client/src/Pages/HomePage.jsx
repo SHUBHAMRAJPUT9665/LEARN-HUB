@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import animationData from "../Assets/Animation - 1718988311424.json";
 import FAQSection from "./FAQ/FAQSection";
-
+import homeAnimation from '../Assets/mainHome.json'
 const HomePage = () => {
   return (
     <HomeLayout>
@@ -52,26 +52,9 @@ const HomePage = () => {
       </div>
 
       <div className="pt-5 flex flex-col md:flex-row justify-around  items-center mx-4">
-        <div className="w-full md:w-1/2 p-10">
-          <div className=" rounded-lg shadow-lg p-6">
-            <h1 className="text-xl text-center md:text-2xl lg:text-3xl font-bold text-yellow-500">
-              Pocket Friendly Courses with Certificates!
-            </h1>
-            <p className="text-white p-3 m-2 text-center mt-2 text-xm md:text-base lg:text-xl">
-              Whether you're a beginner looking to dive into programming or an experienced developer seeking skill enhancement, our mentors' guidance and courses are well-designed for all levels of proficiency.
-            </p>
-          </div>
-        </div>
-        <div className="w-full md:w-1/2 p-5 flex justify-center">
-          <div className="w-full h-64 md:h-80 lg:h-96">
-            <iframe
-              className="w-full h-full rounded-lg shadow-lg"
-              src="https://www.youtube.com/embed/dQw4w9WgXc"
-              title="Course Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+        <div className="w-1/2 md:w-1/2 p-5 flex justify-center">
+          <div className="w-full lg:w-1/2 flex items-center justify-center">
+           <Lottie animationData={homeAnimation} />
           </div>
         </div>
       </div>
