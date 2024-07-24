@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import expres from 'express'
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
@@ -6,10 +7,15 @@ import { sendEmail } from "../utils/sendEmail.js";
 import crypto from "crypto";
 import cloudinary from "cloudinary";
 import uploadFile from "../utils/upload.js";
+
+import express from 'express'
+const app = express()
+app.set("trust proxy", 1);
 const cookieOptions = {
-  secure: process.env.NODE_ENV === 'production' ? true : false,
+  secure:true,
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
+  sameSite: 'None'
 };
 
 const register = async (req, res, next) => {

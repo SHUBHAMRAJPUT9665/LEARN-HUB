@@ -4,7 +4,6 @@ import { ApiError } from "../utils/ApiError.js";
 const isLoggedIn = async (req, res, next) => {
   try {
     const { token } = req.cookies;
-
     if (!token) {
       return res.status(400).json({
         success: false,
