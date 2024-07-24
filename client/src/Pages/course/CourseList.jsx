@@ -9,8 +9,8 @@ const CourseList = () => {
   const { courseData } = useSelector((state) => state.course);
 
   async function loadCourse() {
-    await dispatch(userData())
     await dispatch(getAllCourses());
+    await dispatch(userData())
   }
   
   useEffect(() => {  
