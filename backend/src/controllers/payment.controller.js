@@ -28,8 +28,6 @@ const buyScription = async (req, res, next) => {
         message: "Unauthorized please again",
       });
     }
-    console.log(user)
-
     if (user.role === "ADMIN") {
       console.log("Admin")
       return res.status(500).json({
@@ -54,7 +52,6 @@ const buyScription = async (req, res, next) => {
       subscription_id: subscription.id,
     });
   } catch (error) {
-    console.log(error)
     return res.status(500).json({
       success: false,
       message: "subscription failed by ",
@@ -66,8 +63,6 @@ const buyScription = async (req, res, next) => {
 const verifySubscription = async (req, res, next) => {
   try {
     const  id  =  req.user._id;
-
-    console.log(id)
     const {
       razorpay_payment_id,
       razorpay_signature,
@@ -84,7 +79,6 @@ const verifySubscription = async (req, res, next) => {
       });
     }
 
-    console.log("Verify payment: ",user)
 
     const subscriptionId = user.subscription.id;
 
@@ -126,8 +120,7 @@ const verifySubscription = async (req, res, next) => {
 
 const cancelScription = async (req, res, next) => {
   try {
-    const { id } = req.user;
-
+    const  id  =  req.user._id;
     const user = await User.findById(id);
 
     if (!user) {
@@ -145,18 +138,17 @@ const cancelScription = async (req, res, next) => {
         data: {},
       });
     }
-
     const subscriptionId = await user.subscription.id;
-
     const subscription = await razorpay.subscriptions.cancel(subscriptionId);
-
+    console.log(subscription)
     user.subscription.status = subscription.status;
 
     await user.save();
+    
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: error.description,
       data: {},
     });
   }
