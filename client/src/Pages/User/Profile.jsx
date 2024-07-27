@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserData, userData } from "../../Redux/Slices/AuthSlice";
 import { cancelCourseBundle } from "../../Redux/Slices/RazorpaySlice";
+import HomeLayout from '../../Layouts/HomeLayout'
 import toast from "react-hot-toast";
 const Profile = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,8 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="bg-gray-200 text-black font-sans h-screen w-full flex flex-row justify-center items-center">
+   <HomeLayout>
+     <div className="bg-gray-200 text-black font-sans h-screen w-full flex flex-row justify-center items-center">
       <div className="card w-96 mx-auto bg-white shadow-xl hover:shadow">
         <img
           className="h-32 mx-auto rounded-full -mt-20 border-8 border-white"
@@ -65,6 +67,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
+   </HomeLayout>
   );
 };
 
