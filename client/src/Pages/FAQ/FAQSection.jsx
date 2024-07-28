@@ -13,7 +13,7 @@ const FAQSection = () => {
         <section className="py-10  sm:py-16 lg:py-24">
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="max-w-2xl mx-auto text-center">
-                    <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
+                    <h2 className="text-sm font-bold leading-tight text-white">
                         Frequently Asked Questions
                     </h2>
                 </div>
@@ -25,7 +25,7 @@ const FAQSection = () => {
                                 onClick={() => toggleQuestion(index)}
                                 className="flex items-center justify-between w-full px-4 py-4 sm:py-5 sm:px-6"
                             >
-                                <span className="flex text-base font-semibold text-black sm:text-lg">{question.question}</span>
+                                <span className="flex text-sm font-semibold text-black sm:text-lg">{question.question}</span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"

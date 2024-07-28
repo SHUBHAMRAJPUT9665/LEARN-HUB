@@ -110,6 +110,7 @@ const verifySubscription = async (req, res, next) => {
       data: {},
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({
       success: false,
       message: "verification failed",

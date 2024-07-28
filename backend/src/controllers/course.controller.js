@@ -33,11 +33,15 @@ const getLectureCourseId = async (req, res) => {
       new ApiResponse(200, {
         success: true,
         message: "Course lecutres fetched successfully",
-        lectures: course,
+        lectures: course.lectures,
       })
     );
   } catch (error) {
-    throw new ApiError(500, error.message);
+    return res.status(500).json({
+      success:false,
+      message:"failed to fetch lecture",
+      data:{}
+    })
   }
 };
 

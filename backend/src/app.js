@@ -14,7 +14,7 @@ app.use(cors({
 }));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://learn-hub-v1.vercel.app');
+  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();

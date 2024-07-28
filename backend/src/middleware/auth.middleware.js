@@ -48,7 +48,7 @@ const authorizedRoles =
     next();
   };
 
-const authorizeSubscriber = () => {
+const authorizeSubscriber = (req,res,next) => {
   const subscription = req.user.subscription;
   const currentUserRole = req.user.role;
   if (currentUserRole !== "ADMIN" && subscription.status !== "active") {

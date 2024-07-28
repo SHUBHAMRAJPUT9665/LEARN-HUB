@@ -20,17 +20,14 @@ export const getRazorPayId = createAsyncThunk('/razorpay/getId',async ()=>{
         toast.error('Failed to load razorpay key data')
     }
 })
-
 export const purchaseCourseBundle = createAsyncThunk('/purchaseCourse',async()=>{
     try {
         const response = await axiosInstance.post('/payments/subscribe');
-        console.log(response)
         return (await response).data
     } catch (error) {
         toast.error(error?.response?.data?.message)
     }
 })
-
 export const verifyUserPayment = createAsyncThunk('/payment/verify',async(data)=>{
     try {
         const response = await axiosInstance.post('/payments/verify',{
@@ -46,7 +43,6 @@ export const verifyUserPayment = createAsyncThunk('/payment/verify',async(data)=
 
     }
 })
-
 export const getPaymentRecord = createAsyncThunk('/payments/record',async(data)=>{
     try {
         const response = await axiosInstance.get('/payments');

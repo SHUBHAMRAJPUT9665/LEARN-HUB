@@ -29,7 +29,7 @@ router
   .route("/:id")
   .get(
        isLoggedIn, 
-       authorizedRoles("ADMIN"), 
+      //  authorizedRoles("ADMIN"), 
        authorizeSubscriber,
        getLectureCourseId
   )
