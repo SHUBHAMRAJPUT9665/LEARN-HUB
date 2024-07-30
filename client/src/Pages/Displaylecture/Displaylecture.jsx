@@ -51,7 +51,7 @@ const DisplayLecture = () => {
                   <li
                     key={lecture._id}
                     className={`p-2 border-b border-gray-700 cursor-pointer ${
-                      currentVideo === idx ? 'bg-yellow-500 text-black font-bold' : 'hover:bg-gray-700'
+                      currentVideo === idx ? 'bg-gray-700  rounded-lg text-white font-bold' : 'hover:bg-gray-700 rounded-lg'
                     }`}
                     onClick={() => setCurrentVideo(idx)}
                   >
@@ -61,7 +61,7 @@ const DisplayLecture = () => {
                     {role === 'ADMIN' && (
                       <button
                         onClick={() => onLectureDelete(state?._id, lecture?._id)}
-                        className="text-red-500 ml-2"
+                        className="text-red-500 m-2 ml-2"
                       >
                         Delete
                       </button>
@@ -83,7 +83,7 @@ const DisplayLecture = () => {
                 />
               </div>
               <div className="mt-4 sm:mt-6 w-full text-sm sm:text-base">
-                <h1 className="text-yellow-500 text-lg sm:text-xl md:text-2xl font-semibold">
+                <h1 className="text-yellow-500  text-lg sm:text-xl md:text-2xl font-semibold">
                   Title: {lectures[currentVideo]?.title}
                 </h1>
                 <p className="text-white mt-2">

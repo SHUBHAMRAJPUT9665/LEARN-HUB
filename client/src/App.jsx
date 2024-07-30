@@ -23,6 +23,7 @@ import Checkout from "./Pages/Payment/Checkout";
 import CheckoutSuccess from "./Pages/Payment/CheckoutSuccess";
 import CheckoutFail from "./Pages/Payment/CheckoutFail";
 import Displaylecture from "./Pages/Displaylecture/Displaylecture";
+import Addlecture from "./Pages/course/Addlecture";
 function App() {
   return (
     <>
@@ -41,9 +42,12 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicy />}></Route>
         <Route path="/terms-condition" element={<TermsAndConditions />}></Route>
         <Route path="/edit-profile" element={<EditProfile />}></Route>
+
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="/course/create" element={<CreateCourse />} />
+          <Route path="/course/addlecture" element={<Addlecture />}></Route>
         </Route>
+
         <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
           <Route path="/user/profile" element={<Profile />}></Route>
           <Route path="/change-Password" element={<ChangePassword />}></Route>

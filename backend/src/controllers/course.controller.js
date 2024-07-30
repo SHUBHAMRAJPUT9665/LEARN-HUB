@@ -131,14 +131,11 @@ const updateCourse = async (req, res) => {
 const removeCourse = async (req, res) => {
   try {
     const { id } = req.params;
-
-
     const course = await Course.findByIdAndDelete(id);
 
     if (!course) {
       throw new ApiError(500, "Course with give id not exits");
     }
-
     return res.status(201).json({
       success: true,
       message: "course deleted successfull!",
@@ -151,7 +148,6 @@ const removeCourse = async (req, res) => {
 const addLectureCourseById = async (req, res) => {
   try {
     const { title, description } = req.body;
-
     const { id } = req.params;
 
     if (!title || !description) {
@@ -168,8 +164,6 @@ const addLectureCourseById = async (req, res) => {
       description,
       lecture:{}
      };
- 
-    
       try {
         const lectureLocalPath = req.files?.lecture[0]?.path;
         const lectureFile = await uploadFile(lectureLocalPath);
@@ -178,9 +172,12 @@ const addLectureCourseById = async (req, res) => {
           lectureData.lecture.secure_url = lectureFile.secure_url
         }
       } catch (error) {
-        return res.status(500).json({ success: false, message: "Error while adding course lecture thumbnail", error: error.message });
+        return res.status(500).json({ 
+          success: false, 
+          message: "Error while adding course lecture thumbnail", 
+          error: error.message 
+        });
       }
-  
 
     course.lectures.push(lectureData);
     course.numberOflecture = course.lectures.length;
@@ -192,11 +189,10 @@ const addLectureCourseById = async (req, res) => {
       course,
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ success: false, message: "Error while adding course lecture", error: error.message });
   }
 };
-
-
 export {
   getAllCourses,
   getLectureCourseId,

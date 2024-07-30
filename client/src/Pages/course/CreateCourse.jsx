@@ -42,7 +42,7 @@ const CreateCourse = () => {
     });
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -52,11 +52,11 @@ const CreateCourse = () => {
       !userInput.thumbnail ||
       !userInput.createdBy
     ) {
-      toast.error("All Fields are mandatory");
+      toast.error("All fields are mandatory");
       return;
     }
 
-    const response = dispatch(createNewCourse(userInput));
+    const response = await dispatch(createNewCourse(userInput));
 
     if (response?.payload?.success) {
       setUserInput({
@@ -74,33 +74,30 @@ const CreateCourse = () => {
 
   return (
     <HomeLayout>
-      <div className="flex flex-col items-center justify-center min-h-screen ">
-        <form
-          onSubmit={onFormSubmit}
-          className="flex flex-col items-center gap-6 rounded-lg p-6 bg-white text-gray-800 w-full max-w-xl shadow-lg relative"
-        >
-          <div className="flex items-center w-full mb-4">
-            <Link
-              to="/"
-              className="absolute top-4 left-4 text-2xl text-blue-600 cursor-pointer"
+      <div className="min-h-[90vh] flex flex-col items-center justify-center py-10 px-4 md:px-16 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
+        <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
+          <header className="flex items-center justify-center relative mb-6">
+            <Link 
+              to="/" 
+              className="absolute left-2 text-2xl text-blue-600"
             >
               <AiOutlineLeft />
             </Link>
-            <h1 className="w-full text-center text-2xl font-bold text-gray-700">
+            <h1 className="text-2xl text-yellow-600 font-bold">
               Create New Course
             </h1>
-          </div>
-          <div className="flex flex-col items-center gap-4 w-full">
-            <label className="cursor-pointer w-full" htmlFor="image_uploads">
+          </header>
+          <form onSubmit={onFormSubmit} className="flex flex-col gap-4">
+            <label htmlFor="image_uploads" className="cursor-pointer w-full">
               {userInput.previewImage ? (
                 <img
                   src={userInput.previewImage}
                   alt="Course Thumbnail"
-                  className="w-full h-36 object-cover rounded-lg border"
+                  className="w-full h-36 object-cover rounded-md border-2 border-gray-300"
                 />
               ) : (
-                <div className="w-full h-36 flex items-center justify-center border rounded-lg bg-gray-200">
-                  <h1 className="font-bold text-md text-gray-600">
+                <div className="w-full h-36 border-2 border-dashed border-gray-300 flex items-center justify-center rounded-md bg-gray-200">
+                  <h1 className="font-semibold text-gray-600">
                     Upload your course thumbnail
                   </h1>
                 </div>
@@ -114,69 +111,45 @@ const CreateCourse = () => {
               onChange={handleImageUpload}
               className="hidden"
             />
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-md font-semibold text-gray-700" htmlFor="title">
-                Course Title
-              </label>
-              <input
-                type="text"
-                required
-                name="title"
-                placeholder="Course Title"
-                className="bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                onChange={handleUserInput}
-                value={userInput.title}
-              />
-            </div>
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-md font-semibold text-gray-700" htmlFor="createdBy">
-                Instructor Name
-              </label>
-              <input
-                type="text"
-                required
-                name="createdBy"
-                placeholder="Instructor Name"
-                className="bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                onChange={handleUserInput}
-                value={userInput.createdBy}
-              />
-            </div>
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-md font-semibold text-gray-700" htmlFor="category">
-                Category
-              </label>
-              <input
-                type="text"
-                required
-                name="category"
-                placeholder="Category"
-                className="bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                onChange={handleUserInput}
-                value={userInput.category}
-              />
-            </div>
-            <div className="flex flex-col gap-1 w-full">
-              <label className="text-md font-semibold text-gray-700" htmlFor="description">
-                Description
-              </label>
-              <textarea
-                required
-                name="description"
-                placeholder="Course Description"
-                className="bg-white px-4 py-2 border rounded-md h-24 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                onChange={handleUserInput}
-                value={userInput.description}
-              />
-            </div>
+            <input
+              type="text"
+              name="title"
+              placeholder="Course Title"
+              onChange={handleUserInput}
+              className="input input-bordered w-full bg-white text-black px-4 py-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              value={userInput.title}
+            />
+            <input
+              type="text"
+              name="createdBy"
+              placeholder="Instructor Name"
+              onChange={handleUserInput}
+              className="input input-bordered w-full bg-white text-black px-4 py-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              value={userInput.createdBy}
+            />
+            <input
+              type="text"
+              name="category"
+              placeholder="Category"
+              onChange={handleUserInput}
+              className="input input-bordered w-full bg-white text-black px-4 py-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              value={userInput.category}
+            />
+            <textarea
+              name="description"
+              placeholder="Course Description"
+              onChange={handleUserInput}
+              className="textarea textarea-bordered w-full bg-white text-black px-4 py-2 border-2 rounded-md resize-none h-36 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              value={userInput.description}
+            />
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-600 transition duration-200 w-full"
+              className="mt-6 py-2 px-4 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-md shadow-md hover:from-green-500 hover:to-blue-600 transition duration-300"
             >
               Create Course
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </HomeLayout>
   );
