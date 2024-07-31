@@ -43,24 +43,25 @@ export const verifyUserPayment = createAsyncThunk('/payment/verify',async(data)=
 
     }
 })
-export const getPaymentRecord = createAsyncThunk('/payments/record',async(data)=>{
-    try {
-        const response = await axiosInstance.get('/payments/record');
-        console.log(response)
-        toast.promise({
-            loading:"getting the payment records",
-            success:(data) =>{
-                return data?.data?.message
-            },
-            error:"failed to get payment course"
-        })
-        return (await response).data 
-    } catch (error) {
-        console.log(error)
-        toast.error("get payments failed")
 
-    }
-})
+export const getPaymentRecord = createAsyncThunk("paymentrecord", async () => {
+  try {
+    const res = axiosInstance.get("user/payments?count=50");
+    console.log(res)
+    toast.promise(res, {
+      loading: "Getting the payments record...",
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: "Failed to get payment records",
+    });
+
+    const response = await res;
+    return response.data;
+  } catch (error) {
+    toast.error("Operation failed");
+  }
+});
 
 export const cancelCourseBundle = createAsyncThunk('/payments/cancel',async(data)=>{
     try {

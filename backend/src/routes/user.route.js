@@ -8,7 +8,9 @@ import {
   resetPassword,
   changePassword,
   getUser,
-  updateUser
+  updateUser,
+  allPayments,
+  userStats
 } from "../controllers/user.controller.js";
 import { isLoggedIn } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
@@ -30,6 +32,8 @@ router.route("/forgot").post(forgotPassword);
 router.route("/reset-password/:resetToken").post(resetPassword);
 router.route("/change-password").post(isLoggedIn, changePassword);
 router.route("/all").get(getUser);
+router.route('/payments').get(allPayments)
+router.route('/admin/stats').get(userStats)
 router.route("/update").post(
   upload.fields([
     {
