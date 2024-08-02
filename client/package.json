@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "@zegocloud/zego-uikit-prebuilt": "^2.6.2",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
     "daisyui": "^4.12.2",

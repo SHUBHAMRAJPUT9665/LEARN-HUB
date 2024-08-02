@@ -12,6 +12,8 @@ const HomeLayout = ({ children }) => {
 
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
   const role = useSelector((state) => state?.auth?.role);
+  const userStatus = useSelector((state) => state?.auth?.data?.subscription?.status)
+  console.log(userStatus)
   function changeWidth() {
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "auto";
@@ -57,6 +59,16 @@ const HomeLayout = ({ children }) => {
             {isLoggedIn && role === "ADMIN" && (
               <li>
                 <Link to="/admin/dashboard">Admin Dashboard</Link>
+              </li>
+            )}
+             {isLoggedIn && role === "ADMIN" && (
+              <li>
+                <Link to="/video/class">Start Live Class</Link>
+              </li>
+            )}
+            {isLoggedIn && userStatus === "active" && (
+              <li>
+                <Link to="/video/class">Join Live Class</Link>
               </li>
             )}
              {isLoggedIn && role === 'ADMIN' && (
