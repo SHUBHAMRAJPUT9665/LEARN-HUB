@@ -135,7 +135,14 @@ To use LEARN-HUB:
 5. **Subscribe to LEARN-HUB** using the Razorpay payment gateway for access the LEARN HUB courses and additional features.
 6. **Admin users can view the Admin dashboard** to monitor users, revenue, and graphical data, as well as add courses and lectures.
 
+## Credits
 
+- **Shubham Rajput** - [GitHub](https://github.com/SHUBHAMRAJPUT9665)
+- Contributions from the open-source community are welcome and appreciated.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). See the LICENSE file for more details.
 
 ## Badges
 
